@@ -18,7 +18,7 @@ Virtual Desktop Manager for Windows
 | ALT + CTRL + SHIFT + Q | exits the program                           |
 | ALT + CTRL + SHIFT + S | starts/stops handling of other hotkeys      |
 | ALT + CTRL + SHIFT + T | pin active window (makes it always visible) |
-
+| ALT + ← / →            | move the desktop left or right              |
 
 ### Build:
 

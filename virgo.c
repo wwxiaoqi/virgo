@@ -308,12 +308,11 @@ static void virgo_init(Virgo *v)
 		register_hotkey(i * 2, MOD_ALT | MOD_NOREPEAT, i + 1 + '0');
 		register_hotkey(i * 2 + 1, MOD_CONTROL | MOD_NOREPEAT, i + 1 + '0');
 	}
-	register_hotkey(i * 2, MOD_ALT | MOD_CONTROL | MOD_SHIFT | MOD_NOREPEAT,
-					'Q');
-	register_hotkey(i * 2 + 1, MOD_ALT | MOD_CONTROL | MOD_SHIFT | MOD_NOREPEAT,
-					'S');
-	register_hotkey(i * 2 + 2, MOD_ALT | MOD_CONTROL | MOD_SHIFT | MOD_NOREPEAT,
-					'T');
+	register_hotkey(i * 2, MOD_ALT | MOD_CONTROL | MOD_SHIFT | MOD_NOREPEAT, 'Q');
+	register_hotkey(i * 2 + 1, MOD_ALT | MOD_CONTROL | MOD_SHIFT | MOD_NOREPEAT, 'S');
+	register_hotkey(i * 2 + 2, MOD_ALT | MOD_CONTROL | MOD_SHIFT | MOD_NOREPEAT, 'T');
+	register_hotkey(i * 2 + 3, MOD_ALT | MOD_NOREPEAT, VK_LEFT);
+    register_hotkey(i * 2 + 4, MOD_ALT | MOD_NOREPEAT, VK_RIGHT);
 	trayicon_init(&v->trayicon);
 }
 
@@ -377,6 +376,12 @@ void __main(void)
 			virgo_toggle_hotkeys(&v);
 		} else if (msg.wParam == NUM_DESKTOPS * 2 + 2) {
 			virgo_toggle_pin(&v, GetForegroundWindow());
+		} else if (msg.wParam == NUM_DESKTOPS * 2 + 3) {
+			unsigned target_desk = (v.current - 1) % NUM_DESKTOPS;
+			virgo_go_to_desk(&v, target_desk);
+		} else if (msg.wParam == NUM_DESKTOPS * 2 + 4) {
+			unsigned target_desk = (v.current + 1) % NUM_DESKTOPS;
+			virgo_go_to_desk(&v, target_desk);
 		} else if (msg.wParam % 2 == 0) {
 			virgo_go_to_desk(&v, msg.wParam / 2);
 		} else {

@@ -19,7 +19,7 @@ virgo
 | ALT + CTRL + SHIFT + Q | 退出程序                           |
 | ALT + CTRL + SHIFT + S | 开启/停止监听快捷键                |
 | ALT + CTRL + SHIFT + T | 固定活动窗口（使其始终可见）       |
-
+| ALT + ← / →            | 向左或向右移动桌面              |
 
 ### 构建：
 
